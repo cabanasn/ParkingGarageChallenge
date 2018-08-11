@@ -1,12 +1,15 @@
 package com.icabanas.parkinggaragechallenge.repository
 
+import android.arch.lifecycle.MutableLiveData
+import android.content.Context
+import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.api.ParkingService
+import com.icabanas.parkinggaragechallenge.cache.ParkingMemoryCache
 import com.icabanas.parkinggaragechallenge.vo.Parking
-import com.icabanas.parkinggaragechallenge.vo.Spot
+import com.icabanas.parkinggaragechallenge.vo.Resource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,43 +19,40 @@ import javax.inject.Singleton
 @Singleton
 class ParkingRepository @Inject constructor(
         private val parkingService: ParkingService
-)
-{
+) {
+    @Inject
+    lateinit var context: Context
+    @Inject
+    lateinit var parkingMemoryCache: ParkingMemoryCache
 
-    fun getParking() {
-        parkingService.getParking().enqueue(object : Callback<Parking> {
-            override fun onResponse(call: Call<Parking>?, response: Response<Parking>?) {
-                if (response != null && response.isSuccessful) {
-                    Timber.d(response.toString())
-                } else {
-                    Timber.e("ERROR - RESPONSE NULL")
+    val parking = MutableLiveData<Resource<Parking>>()
+
+    fun fetchParking() {
+        //Update the Resource status to loading while performing background operations
+        parking.value = Resource.loading(null)
+
+        //If there is already a Parking object cached, return that one
+        if (!parkingMemoryCache.hasParkingStored()) {
+            //Enqueue the Retrofit API Call
+            parkingService.getParking().enqueue(object : Callback<Parking> {
+                override fun onResponse(call: Call<Parking>?, response: Response<Parking>?) {
+                    if (response != null &&
+                            response.isSuccessful &&
+                            response.body() != null) {
+                        parkingMemoryCache.storedParking = response.body()!!
+                        parking.value = Resource.success(parkingMemoryCache.storedParking)
+                    } else {
+                        parking.value = Resource.error(context.getString(R.string.network_error), null)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<Parking>?, t: Throwable?) {
-                Timber.e(t)
-            }
-        })
-    }
-
-    /**
-     * Searchs for the first empty [Spot] that can fit a specific vehicle space
-     * @return a [Spot] if found, null if not
-     */
-    fun findFreeParkingSpot(size: Int, parking: Parking): Spot? {
-        var spot: Spot? = null
-        //Iterate levels from lowest to highest
-        for (level in parking.levels.sortedBy { it.id }) {
-            //Filter taken and too small spots, then find best size fit
-            val freeLevelSpots = level.spots.filter { spotIt -> spotIt.vehicle == null && spotIt.size >= size }.sortedBy { spotIt -> spotIt.size }
-            if (freeLevelSpots.isNotEmpty()) {
-                spot = freeLevelSpots.first()
-                break
-            }
+                override fun onFailure(call: Call<Parking>?, t: Throwable?) {
+                    parking.value = Resource.error(context.getString(R.string.network_error), null)
+                }
+            })
+        } else {
+            parking.value = Resource.success(parkingMemoryCache.storedParking)
         }
-        return spot
     }
-
-
 
 }

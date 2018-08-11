@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ParkingGarageChallenge</string>
+    <string name="network_error">Error fetching parking data</string>
 </resources>

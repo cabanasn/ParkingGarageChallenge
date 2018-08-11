@@ -27,7 +27,7 @@ data class Spot (
         @SerializedName("size")
         val size: Int,
         @SerializedName("vehicle")
-        val vehicle: Vehicle?
+        var vehicle: Vehicle?
 )
 
 data class Vehicle (
