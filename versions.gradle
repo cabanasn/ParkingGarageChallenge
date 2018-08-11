@@ -7,11 +7,16 @@ ext.deps = [:]
 def versions = [:]
 versions.kotlin = "1.2.50"
 versions.android_gradle_plugin = "3.1.4"
+versions.dagger = "2.15"
+versions.lifecycle = "1.1.1"
+versions.timber = "4.7.1"
 versions.junit = "4.12"
+versions.mockito = "2.7.19"
 versions.espresso = "3.0.2"
 versions.support = "27.1.1"
 versions.constraint_layout = "1.1.2"
 versions.atsl_runner = "1.0.2"
+versions.retrofit = "2.4.0"
 
 def deps = [:]
 
@@ -25,6 +30,31 @@ support.v4 = "com.android.support:support-v4:$versions.support"
 support.core_utils = "com.android.support:support-core-utils:$versions.support"
 deps.support = support
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+
+def lifecycle = [:]
+lifecycle.runtime = "android.arch.lifecycle:runtime:$versions.lifecycle"
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+lifecycle.java8 = "android.arch.lifecycle:common-java8:$versions.lifecycle"
+lifecycle.compiler = "android.arch.lifecycle:compiler:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+deps.dagger = dagger
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+deps.retrofit = retrofit
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+deps.mockito = mockito
 
 def espresso = [:]
 espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
@@ -40,6 +70,7 @@ kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 deps.kotlin = kotlin
 
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.junit = "junit:junit:$versions.junit"
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 ext.deps = deps

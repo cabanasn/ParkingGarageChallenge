@@ -1,25 +1,29 @@
 package com.icabanas.parkinggaragechallenge
 
+import com.icabanas.parkinggaragechallenge.api.ParkingService
 import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import com.icabanas.parkinggaragechallenge.vo.Level
 import com.icabanas.parkinggaragechallenge.vo.Parking
 import com.icabanas.parkinggaragechallenge.vo.Spot
 import com.icabanas.parkinggaragechallenge.vo.Vehicle
-import org.junit.Assert.*
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.Mockito
 import java.util.Date
 
 @RunWith(JUnit4::class)
 class ParkingRepositoryTest {
 
     private lateinit var parkingRepository: ParkingRepository
+    private val service = Mockito.mock(ParkingService::class.java)
 
     @Before
     fun setup() {
-        parkingRepository = ParkingRepository()
+        parkingRepository = ParkingRepository(service)
     }
 
     @Test

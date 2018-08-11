@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -14,19 +15,54 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"http://www.mocky.io/v2/\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.support.app_compat
+
+    // Logging
+    implementation deps.timber
+
+    // Lifecycle (LiveData and ViewModel)
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+    // Dependency Injection
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+
+    // UI
     implementation deps.constraint_layout
 
+    // Rest API
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+
+    // Testing
     testImplementation deps.junit
+    testImplementation deps.mockito.core
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.espresso.core
 }
