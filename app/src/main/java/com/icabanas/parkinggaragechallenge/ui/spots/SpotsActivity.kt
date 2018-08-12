@@ -10,6 +10,7 @@ import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.vo.Level
 import kotlinx.android.synthetic.main.activity_spots.*
+import kotlinx.android.synthetic.main.base_toolbar.*
 import javax.inject.Inject
 
 class SpotsActivity : AppCompatActivity() {
@@ -25,15 +26,16 @@ class SpotsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spots)
+        setSupportActionBar(toolbar)
 
         ParkingApplication.appComponent.inject(this)
 
         spotsList.adapter = spotsAdapter
 
         spotsViewModel = ViewModelProviders.of(this, spotsViewModelFactory).get(SpotsViewModel::class.java)
-        spotsViewModel.level.observe(this, Observer {
-            value ->
+        spotsViewModel.level.observe(this, Observer { value ->
             value?.let {
+                supportActionBar?.title = it.name
                 spotsAdapter.items = it.spots
             }
         })

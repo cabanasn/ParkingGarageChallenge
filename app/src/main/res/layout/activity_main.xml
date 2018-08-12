@@ -38,14 +38,14 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.FloatingActionButton
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:layout_anchor="@id/appBarLayout"
-        android:src="@drawable/ic_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
+        android:src="@drawable/ic_search"
         app:backgroundTint="@color/colorAccent"
-        app:layout_anchorGravity="bottom|right|end"/>
+        app:elevation="6dp"
+        app:layout_anchor="@id/appBarLayout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:pressedTranslationZ="12dp" />
 
 </android.support.design.widget.CoordinatorLayout>

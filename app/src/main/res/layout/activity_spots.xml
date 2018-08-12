@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.spots.SpotsActivity">
+    android:orientation="vertical">
 
+    <include layout="@layout/base_toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/spotsList"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/grey_bg_color"
+        android:padding="4dp"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="2"
         tools:listitem="@layout/spot_item" />
 
-</android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>

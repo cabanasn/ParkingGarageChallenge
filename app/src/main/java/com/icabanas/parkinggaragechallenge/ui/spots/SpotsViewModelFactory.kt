@@ -3,7 +3,6 @@ package com.icabanas.parkinggaragechallenge.ui.spots
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.icabanas.parkinggaragechallenge.repository.LevelsRepository
-import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import javax.inject.Inject
 
 

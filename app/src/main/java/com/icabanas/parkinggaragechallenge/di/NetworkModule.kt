@@ -32,7 +32,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRemoteParkingService(retrofit: Retrofit) : ParkingService =
-        retrofit.create(ParkingService::class.java)
+    fun provideRemoteParkingService(retrofit: Retrofit): ParkingService =
+            retrofit.create(ParkingService::class.java)
 
 }

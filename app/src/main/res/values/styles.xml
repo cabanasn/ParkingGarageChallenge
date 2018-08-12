@@ -32,4 +32,8 @@
         <item name="android:textSize">45sp</item>
     </style>
 
+    <style name="list_item_small_label">
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="spot"
             type="com.icabanas.parkinggaragechallenge.vo.Spot" />
@@ -11,7 +12,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,19 +23,43 @@
 
             <TextView
                 android:id="@+id/spot_name"
+                style="@style/list_item_title"
+                android:layout_gravity="center"
+                android:text="@{String.format(@string/spot_number, spot.id)}"
+                tools:text="Spot #1" />
+
+            <TextView
+                style="@style/list_item_small_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="@{String.format(@string/spot_number, spot.id)}"
-                tools:text="Spot 0" />
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:includeFontPadding="false"
+                android:text="@string/size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@{String.format(@string/string_number, spot.size)}"
+                android:textSize="40sp"
+                tools:text="60" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="@{spot.vehicle != null ? spot.vehicle.brand : @string/empty_spot}"
-                tools:text="Empty" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@{spot.vehicle != null ? @string/booked_spot : @string/available_spot}"
+                android:textColor="@{spot.vehicle != null ? @color/red :  @color/green}"
+                android:textSize="25sp"
+                tools:text="@string/available_spot" />
+
 
         </LinearLayout>
 

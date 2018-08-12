@@ -2,6 +2,9 @@
     <string name="app_name">ParkingGarageChallenge</string>
     <string name="network_error">Error fetching parking data</string>
     <string name="spot_number">Spot #%d</string>
-    <string name="empty_spot">Empty</string>
+    <string name="string_number">%d</string>
+    <string name="available_spot">AVAILABLE</string>
+    <string name="booked_spot">BOOKED</string>
     <string name="booked_spots">BOOKED SPOTS</string>
+    <string name="size">SIZE</string>
 </resources>

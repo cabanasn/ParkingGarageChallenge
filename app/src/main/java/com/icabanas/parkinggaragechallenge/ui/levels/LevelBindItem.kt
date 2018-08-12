@@ -2,7 +2,7 @@ package com.icabanas.parkinggaragechallenge.ui.levels
 
 import com.icabanas.parkinggaragechallenge.vo.Level
 
-class LevelBindItem (val level: Level) {
+class LevelBindItem(val level: Level) {
     var title: String = level.name
     var bookedText: String = "${bookedSpots()}"
     var emptyText: String = "/${level.spots.size}"

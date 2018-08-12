@@ -20,7 +20,7 @@ class ParkingMemoryCache @Inject constructor(
     /**
      * Stored [Parking] pulled directly from the Shared Preferences
      */
-    var storedParking:Parking
+    var storedParking: Parking
         get() = gson.fromJson(sharedPreferences.getString(TAG, "{}"), Parking::class.java)
         set(value) {
             sharedPreferences.edit().putString(TAG, gson.toJson(value)).commit()
@@ -38,8 +38,8 @@ class ParkingMemoryCache @Inject constructor(
      * Finds a specific [Level] of the loadParking lot by Id
      * @return[Level] if found, null if not
      */
-    fun findLevel(levelId: Int, parking:Parking = storedParking): Level? {
-        var level:Level? = null
+    fun findLevel(levelId: Int, parking: Parking = storedParking): Level? {
+        var level: Level? = null
         var filteredLevels = parking.levels.filter { it.id == levelId }
         if (filteredLevels.isNotEmpty()) {
             level = filteredLevels.first()
@@ -51,9 +51,9 @@ class ParkingMemoryCache @Inject constructor(
      * Finds a specific [Spot] of the loadParking lot by Id
      * @return [Spot] if found, null if not
      */
-    fun findSpot(levelId: Int, spotId: Int, parking:Parking = storedParking): Spot? {
-        var level:Level? = findLevel(levelId, parking)
-        var spot:Spot? = null
+    fun findSpot(levelId: Int, spotId: Int, parking: Parking = storedParking): Spot? {
+        var level: Level? = findLevel(levelId, parking)
+        var spot: Spot? = null
         level?.let {
             var filteredSpots = it.spots.filter { it.id == spotId }
             if (filteredSpots.isNotEmpty()) {
@@ -86,7 +86,7 @@ class ParkingMemoryCache @Inject constructor(
      * Books a [Spot]
      * @return true if there is a [Spot] was successful, false if not
      */
-    fun bookSpot(levelId:Int, spotId: Int, vehicle: Vehicle): Boolean {
+    fun bookSpot(levelId: Int, spotId: Int, vehicle: Vehicle): Boolean {
         var booked = false
         if (hasParkingStored()) {
             var mutableParking = storedParking.copy()
@@ -105,7 +105,7 @@ class ParkingMemoryCache @Inject constructor(
      * Releases a [Spot]
      * @return true if there the [Spot] was released, false if not
      */
-    fun releaseSpot(levelId:Int, spotId: Int): Boolean {
+    fun releaseSpot(levelId: Int, spotId: Int): Boolean {
         var released = false
         if (hasParkingStored()) {
             var mutableParking = storedParking.copy()
