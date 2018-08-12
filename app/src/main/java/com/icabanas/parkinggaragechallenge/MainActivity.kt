@@ -2,13 +2,12 @@ package com.icabanas.parkinggaragechallenge
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.icabanas.parkinggaragechallenge.ui.ParkingViewModel
 import com.icabanas.parkinggaragechallenge.ui.ParkingViewModelFactory
-import com.icabanas.parkinggaragechallenge.ui.SpotsActivity
+import com.icabanas.parkinggaragechallenge.ui.spots.SpotsActivity
 import com.icabanas.parkinggaragechallenge.ui.levels.LevelsAdapter
 import com.icabanas.parkinggaragechallenge.vo.Status
 import kotlinx.android.synthetic.main.activity_main.*

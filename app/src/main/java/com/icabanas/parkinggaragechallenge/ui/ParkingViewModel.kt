@@ -7,7 +7,7 @@ import com.icabanas.parkinggaragechallenge.vo.Parking
 import com.icabanas.parkinggaragechallenge.vo.Resource
 import javax.inject.Inject
 
-class ParkingViewModel @Inject constructor(val parkingRepository: ParkingRepository): ViewModel() {
+class ParkingViewModel @Inject constructor(parkingRepository: ParkingRepository): ViewModel() {
 
     var parking: LiveData<Resource<Parking>> = parkingRepository.parking
 

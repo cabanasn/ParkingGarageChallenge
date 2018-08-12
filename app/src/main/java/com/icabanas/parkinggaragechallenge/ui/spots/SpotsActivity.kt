@@ -1,4 +1,4 @@
-package com.icabanas.parkinggaragechallenge.ui
+package com.icabanas.parkinggaragechallenge.ui.spots
 
 import android.content.Context
 import android.content.Intent

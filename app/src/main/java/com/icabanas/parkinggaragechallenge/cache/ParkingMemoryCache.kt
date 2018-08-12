@@ -2,6 +2,7 @@ package com.icabanas.parkinggaragechallenge.cache
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.icabanas.parkinggaragechallenge.vo.Level
 import com.icabanas.parkinggaragechallenge.vo.Parking
 import com.icabanas.parkinggaragechallenge.vo.Spot
 import com.icabanas.parkinggaragechallenge.vo.Vehicle
@@ -34,45 +35,32 @@ class ParkingMemoryCache @Inject constructor(
     }
 
     /**
-     * Books a [Spot]
-     * @return true if there is a [Spot] was successful, false if not
+     * Finds a specific [Level] of the parking lot by Id
+     * @return[Level] if found, null if not
      */
-    fun bookSpot(levelId:Int, spotId: Int, vehicle: Vehicle): Boolean {
-        var booked = false
-        if (hasParkingStored()) {
-            var mutableParking = storedParking.copy()
-            var filteredLevels = mutableParking.levels.filter { it.id == levelId }
-            if (filteredLevels.isNotEmpty()) {
-                var filteredSpots = filteredLevels.first().spots.filter { it.id == spotId }
-                if (filteredSpots.isNotEmpty() && filteredSpots.first().vehicle == null) {
-                    filteredSpots.first().vehicle = vehicle
-                    storedParking = mutableParking
-                    booked = true
-                }
-            }
+    fun findLevel(levelId: Int, parking:Parking = storedParking): Level? {
+        var level:Level? = null
+        var filteredLevels = parking.levels.filter { it.id == levelId }
+        if (filteredLevels.isNotEmpty()) {
+            level = filteredLevels.first()
         }
-        return booked
+        return level
     }
 
     /**
-     * Releases a [Spot]
-     * @return true if there the [Spot] was released, false if not
+     * Finds a specific [Spot] of the parking lot by Id
+     * @return [Spot] if found, null if not
      */
-    fun releaseSpot(levelId:Int, spotId: Int): Boolean {
-        var released = false
-        if (hasParkingStored()) {
-            var mutableParking = storedParking.copy()
-            var filteredLevels = mutableParking.levels.filter { it.id == levelId }
-            if (filteredLevels.isNotEmpty()) {
-                var filteredSpots = filteredLevels.first().spots.filter { it.id == spotId }
-                if (filteredSpots.isNotEmpty()) {
-                    filteredSpots.first().vehicle = null
-                    storedParking = mutableParking
-                    released = true
-                }
+    fun findSpot(levelId: Int, spotId: Int, parking:Parking = storedParking): Spot? {
+        var level:Level? = findLevel(levelId, parking)
+        var spot:Spot? = null
+        level?.let {
+            var filteredSpots = it.spots.filter { it.id == spotId }
+            if (filteredSpots.isNotEmpty()) {
+                spot = filteredSpots.first()
             }
         }
-        return released
+        return spot
     }
 
     /**
@@ -93,5 +81,41 @@ class ParkingMemoryCache @Inject constructor(
         return spot
     }
 
+
+    /**
+     * Books a [Spot]
+     * @return true if there is a [Spot] was successful, false if not
+     */
+    fun bookSpot(levelId:Int, spotId: Int, vehicle: Vehicle): Boolean {
+        var booked = false
+        if (hasParkingStored()) {
+            var mutableParking = storedParking.copy()
+            findSpot(levelId, spotId, mutableParking)?.let {
+                if (it.vehicle == null) {
+                    it.vehicle = vehicle
+                    storedParking = mutableParking
+                    booked = true
+                }
+            }
+        }
+        return booked
+    }
+
+    /**
+     * Releases a [Spot]
+     * @return true if there the [Spot] was released, false if not
+     */
+    fun releaseSpot(levelId:Int, spotId: Int): Boolean {
+        var released = false
+        if (hasParkingStored()) {
+            var mutableParking = storedParking.copy()
+            findSpot(levelId, spotId, mutableParking)?.let {
+                it.vehicle = null
+                storedParking = mutableParking
+                released = true
+            }
+        }
+        return released
+    }
 
 }
