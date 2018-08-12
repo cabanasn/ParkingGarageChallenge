@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.spots.SpotsActivity" />
-        <activity android:name=".ui.spots.detail.SpotDetailActivity"></activity>
+        <activity android:name=".ui.spots.detail.SpotDetailActivity" />
+        <activity android:name=".ui.book.BookSpotActivity"></activity>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.databinding.ActivitySpotDetailBinding
+import com.icabanas.parkinggaragechallenge.ui.book.BookSpotActivity
 import com.icabanas.parkinggaragechallenge.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_spot_detail.*
 import kotlinx.android.synthetic.main.base_toolbar.*
@@ -63,12 +64,18 @@ class SpotDetailActivity : AppCompatActivity() {
 
         spotDetailViewModel.setIds(levelId, spotId)
 
+        // Buttons on click handling
         releaseBtn.setOnClickListener {
             UIUtils.showConfirmationDialog(this@SpotDetailActivity,
                     getString(R.string.release_dialog_title),
                     getString(R.string.release_dialog_description),
-                    DialogInterface.OnClickListener { dialog, _ -> spotDetailViewModel.releaseSpot() })
+                    DialogInterface.OnClickListener { _, _ -> spotDetailViewModel.releaseSpot() })
         }
+
+        bookBtn.setOnClickListener {
+            startActivity(BookSpotActivity.newIntent(this, levelId, spotId))
+        }
+
     }
 
     companion object {

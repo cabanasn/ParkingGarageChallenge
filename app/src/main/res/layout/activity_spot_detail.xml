@@ -132,9 +132,6 @@
                     <TextView
                         android:id="@+id/plate"
                         style="@style/CarItemValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="@{spot.vehicle.plate}"
                         app:layout_constraintStart_toStartOf="@+id/brand"
                         app:layout_constraintTop_toTopOf="@+id/plateLabel"
@@ -144,9 +141,6 @@
                     <TextView
                         android:id="@+id/color"
                         style="@style/CarItemValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="@{spot.vehicle.color}"
                         app:layout_constraintStart_toStartOf="@+id/plate"
                         app:layout_constraintTop_toTopOf="@+id/colorLabel"
@@ -156,9 +150,6 @@
                     <TextView
                         android:id="@+id/size"
                         style="@style/CarItemValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="@{String.format(@string/string_number, spot.vehicle.size)}"
                         app:layout_constraintStart_toStartOf="@+id/color"
                         app:layout_constraintTop_toTopOf="@+id/sizeLabel"
