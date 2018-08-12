@@ -28,6 +28,14 @@
                 android:text="@{String.format(@string/spot_number, spot.id)}"
                 tools:text="Spot 0" />
 
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="@{spot.vehicle != null ? spot.vehicle.brand : @string/empty_spot}"
+                tools:text="Empty" />
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

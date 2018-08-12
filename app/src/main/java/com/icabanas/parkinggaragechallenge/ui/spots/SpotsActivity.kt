@@ -42,7 +42,6 @@ class SpotsActivity : AppCompatActivity() {
     }
 
     companion object {
-
         private val INTENT_LEVEL_ID = "level_id"
 
         fun newIntent(context: Context, level: Level): Intent {
