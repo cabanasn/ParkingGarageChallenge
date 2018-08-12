@@ -8,4 +8,28 @@
 
     </style>
 
+    <!-- List Items -->
+    <style name="list_item_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="list_level_item_booked">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <style name="list_level_item_empty">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textSize">45sp</item>
+    </style>
+
 </resources>
