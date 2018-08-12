@@ -6,7 +6,6 @@
 
     <!-- Binding Data Definition -->
     <data>
-
         <variable
             name="spot"
             type="com.icabanas.parkinggaragechallenge.vo.Spot"/>

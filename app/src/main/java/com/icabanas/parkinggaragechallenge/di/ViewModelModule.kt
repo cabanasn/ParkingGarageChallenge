@@ -4,6 +4,7 @@ import com.icabanas.parkinggaragechallenge.repository.LevelsRepository
 import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import com.icabanas.parkinggaragechallenge.repository.SpotsRepository
 import com.icabanas.parkinggaragechallenge.ui.ParkingViewModelFactory
+import com.icabanas.parkinggaragechallenge.ui.book.BookSpotViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.spots.SpotsViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.spots.detail.SpotDetailViewModelFactory
 import dagger.Module
@@ -31,6 +32,13 @@ class ViewModelModule {
     fun providesSpotDetailViewModelFactory(spotsRepository: SpotsRepository): SpotDetailViewModelFactory {
         return SpotDetailViewModelFactory(spotsRepository)
     }
+
+    @Provides
+    @Singleton
+    fun providesBookSpotViewModelFactory(spotsRepository: SpotsRepository): BookSpotViewModelFactory {
+        return BookSpotViewModelFactory(spotsRepository)
+    }
+
 
 }
 

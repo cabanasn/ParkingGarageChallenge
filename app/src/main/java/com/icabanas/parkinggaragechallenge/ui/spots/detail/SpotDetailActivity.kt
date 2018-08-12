@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
+import com.icabanas.parkinggaragechallenge.R.string.spot_number
 import com.icabanas.parkinggaragechallenge.databinding.ActivitySpotDetailBinding
 import com.icabanas.parkinggaragechallenge.ui.book.BookSpotActivity
 import com.icabanas.parkinggaragechallenge.utils.UIUtils
@@ -47,7 +48,7 @@ class SpotDetailActivity : AppCompatActivity() {
         spotDetailViewModel.spot.observe(this, Observer {
             value -> value?.let {
                 spot ->
-                supportActionBar?.title = "Spot #${spot.id}"
+                supportActionBar?.title = String.format(getString(R.string.spot_number), spot.id)
                 binding.spot = spot
             }
         })
@@ -62,8 +63,6 @@ class SpotDetailActivity : AppCompatActivity() {
             }
         })
 
-        spotDetailViewModel.setIds(levelId, spotId)
-
         // Buttons on click handling
         releaseBtn.setOnClickListener {
             UIUtils.showConfirmationDialog(this@SpotDetailActivity,
@@ -76,6 +75,11 @@ class SpotDetailActivity : AppCompatActivity() {
             startActivity(BookSpotActivity.newIntent(this, levelId, spotId))
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        spotDetailViewModel.setIds(levelId, spotId)
     }
 
     companion object {

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.book.BookSpotActivity">
+
+    <!-- Binding Data Definition -->
+    <data>
+        <variable
+            name="spot"
+            type="com.icabanas.parkinggaragechallenge.vo.Spot"/>
+    </data>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -22,6 +27,7 @@
             <TextView
                 android:id="@+id/spotLabel"
                 tools:text="Spot: Spot #1 - Size: 30"
+                android:text="@{String.format(@string/spot_book_spot_data, spot.id, spot.size)}"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
                 android:textColor="@android:color/black"
@@ -143,8 +149,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-
-
     </android.support.design.widget.CoordinatorLayout>
 
-</android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,16 +1,77 @@
 package com.icabanas.parkinggaragechallenge.ui.book
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
+import com.icabanas.parkinggaragechallenge.databinding.ActivityBookSpotBinding
+import com.icabanas.parkinggaragechallenge.vo.Vehicle
+import kotlinx.android.synthetic.main.activity_spot_detail.*
+import kotlinx.android.synthetic.main.base_toolbar.*
+import java.util.*
+import javax.inject.Inject
 
 class BookSpotActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var bookSpotViewModelFactory: BookSpotViewModelFactory
+    private lateinit  var bookSpotViewModel: BookSpotViewModel
+
+    private var levelId: Int = 0
+    private var spotId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book_spot)
+        val binding = DataBindingUtil.setContentView<ActivityBookSpotBinding>(this, R.layout.activity_book_spot)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.book_spot_title)
+        // Dagger Injection
+        ParkingApplication.appComponent.inject(this)
+
+        //Get Level Id and Spot Id from Intent Parameter
+        levelId = intent.getIntExtra(INTENT_LEVEL_ID, 0)
+        spotId = intent.getIntExtra(INTENT_SPOT_ID, 0)
+
+
+        // Initialize ViewModel and Listen to changes
+        bookSpotViewModel = ViewModelProviders.of(this, bookSpotViewModelFactory).get(BookSpotViewModel::class.java)
+
+        bookSpotViewModel.spot.observe(this, Observer {
+            value -> value?.let {
+                spot ->
+                binding.spot = spot
+            }
+        })
+
+        bookSpotViewModel.bookSpotResult.observe(this, Observer {
+            value -> value?.let {
+            if (value) {
+                Toast.makeText(this@BookSpotActivity, getString(R.string.spot_booked_successfully), Toast.LENGTH_SHORT).show()
+                this@BookSpotActivity.finish()
+            } else {
+                Toast.makeText(this@BookSpotActivity, getString(R.string.error_booking_spot), Toast.LENGTH_SHORT).show()
+            }
+        }
+        })
+
+        bookSpotViewModel.setIds(levelId, spotId)
+
+        bookBtn.setOnClickListener {
+            bookSpotViewModel.bookSpot(Vehicle(
+                plate.text.toString(),
+                    brand.text.toString(),
+                    color.text.toString(),
+                    size.text.toString().toInt(),
+                    Date()
+            ))
+        }
     }
 
     companion object {
