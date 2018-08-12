@@ -5,8 +5,8 @@ import com.icabanas.parkinggaragechallenge.vo.Level
 class LevelBindItem (val level: Level) {
     var title: String = level.name
     var subtitle: String = "${bookedSpots()}/${level.spots.size}"
-    var bookedWeight: Int = bookedSpots()
-    var emptyWeight: Int = level.spots.size
+    var bookedWeight: Float = bookedSpots().toFloat()
+    var emptyWeight: Float = level.spots.size.toFloat()
 
     fun bookedSpots(): Int = level.spots.filter { it.vehicle != null }.size
 }

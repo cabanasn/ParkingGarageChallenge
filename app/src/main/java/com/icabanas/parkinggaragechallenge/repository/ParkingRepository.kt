@@ -24,9 +24,7 @@ class ParkingRepository @Inject constructor(
     @Inject
     lateinit var context: Context
 
-    val parking = fetchParking()
-
-    private fun fetchParking(): MutableLiveData<Resource<Parking>> {
+    fun loadParking(): MutableLiveData<Resource<Parking>> {
         val parking = MutableLiveData<Resource<Parking>>()
 
         //Update the Resource status to loading while performing background operations

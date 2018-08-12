@@ -36,6 +36,26 @@
                 android:text="@{level.subtitle}"
                 tools:text="40" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp">
+
+                <LinearLayout
+                    android:id="@+id/bookedBar"
+                    android:background="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/emptyBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

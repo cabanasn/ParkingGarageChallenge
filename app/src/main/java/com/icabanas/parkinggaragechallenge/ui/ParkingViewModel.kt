@@ -9,6 +9,6 @@ import javax.inject.Inject
 
 class ParkingViewModel @Inject constructor(parkingRepository: ParkingRepository): ViewModel() {
 
-    var parking: LiveData<Resource<Parking>> = parkingRepository.parking
+    var parking: LiveData<Resource<Parking>> = parkingRepository.loadParking()
 
 }

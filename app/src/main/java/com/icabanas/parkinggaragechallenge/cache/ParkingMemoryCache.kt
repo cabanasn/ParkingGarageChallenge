@@ -35,7 +35,7 @@ class ParkingMemoryCache @Inject constructor(
     }
 
     /**
-     * Finds a specific [Level] of the parking lot by Id
+     * Finds a specific [Level] of the loadParking lot by Id
      * @return[Level] if found, null if not
      */
     fun findLevel(levelId: Int, parking:Parking = storedParking): Level? {
@@ -48,7 +48,7 @@ class ParkingMemoryCache @Inject constructor(
     }
 
     /**
-     * Finds a specific [Spot] of the parking lot by Id
+     * Finds a specific [Spot] of the loadParking lot by Id
      * @return [Spot] if found, null if not
      */
     fun findSpot(levelId: Int, spotId: Int, parking:Parking = storedParking): Spot? {
