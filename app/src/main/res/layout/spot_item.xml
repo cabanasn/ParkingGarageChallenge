@@ -23,13 +23,13 @@
 
             <TextView
                 android:id="@+id/spot_name"
-                style="@style/list_item_title"
+                style="@style/BigTitle"
                 android:layout_gravity="center"
                 android:text="@{String.format(@string/spot_number, spot.id)}"
                 tools:text="Spot #1" />
 
             <TextView
-                style="@style/list_item_small_label"
+                style="@style/SmallLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:includeFontPadding="false"
                 android:text="@{String.format(@string/string_number, spot.size)}"
-                android:textSize="40sp"
+                android:textSize="45sp"
                 tools:text="60" />
 
             <TextView

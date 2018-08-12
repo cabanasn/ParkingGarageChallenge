@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var parkingViewModel: ParkingViewModel
 
     private var levelsAdapter: LevelsAdapter = LevelsAdapter(emptyList()) {
-        startActivity(SpotsActivity.newIntent(this, it))
+        startActivity(SpotsActivity.newIntent(this, it.id))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +29,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        // Dagger Injection
         ParkingApplication.appComponent.inject(this)
 
         levelList.adapter = levelsAdapter
 
+        //Initialize ViewmModel and listen to changes
         parkingViewModel = ViewModelProviders.of(this, parkingViewModelFactory).get(ParkingViewModel::class.java)
         parkingViewModel.parking.observe(this, Observer {
             value ->

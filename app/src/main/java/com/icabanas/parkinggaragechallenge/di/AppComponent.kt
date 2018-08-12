@@ -2,6 +2,7 @@ package com.icabanas.parkinggaragechallenge.di
 
 import com.icabanas.parkinggaragechallenge.MainActivity
 import com.icabanas.parkinggaragechallenge.ui.spots.SpotsActivity
+import com.icabanas.parkinggaragechallenge.ui.spots.detail.SpotDetailActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,4 +11,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(spotsActivity: SpotsActivity)
+    fun inject(spotDetailActivity: SpotDetailActivity)
 }

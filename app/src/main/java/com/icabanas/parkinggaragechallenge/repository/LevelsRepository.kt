@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Repository that handles Parking objects
+ * Repository that handles Levels
  */
 @Singleton
 class LevelsRepository @Inject constructor(

@@ -7,4 +7,13 @@
     <string name="booked_spot">BOOKED</string>
     <string name="booked_spots">BOOKED SPOTS</string>
     <string name="size">SIZE</string>
+    <string name="book">BOOK</string>
+    <string name="release">RELEASE</string>
+    <string name="vehicle">VEHICLE</string>
+    <string name="empty_spot">This spot is currently empty.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="release_dialog_title">Release Spot</string>
+    <string name="release_dialog_description">Are you sure you want to release this spot?</string>
+    <string name="error_releasing_spot">Error releasing spot</string>
 </resources>

@@ -55,7 +55,8 @@ class ParkingMemoryCache @Inject constructor(
         var level: Level? = findLevel(levelId, parking)
         var spot: Spot? = null
         level?.let {
-            var filteredSpots = it.spots.filter { it.id == spotId }
+            levelIt ->
+            var filteredSpots = levelIt.spots.filter { it.id == spotId }
             if (filteredSpots.isNotEmpty()) {
                 spot = filteredSpots.first()
             }

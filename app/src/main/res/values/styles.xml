@@ -9,7 +9,7 @@
     </style>
 
     <!-- List Items -->
-    <style name="list_item_title">
+    <style name="BigTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
@@ -17,7 +17,7 @@
         <item name="android:fontFamily">@font/open_sans_bold</item>
     </style>
 
-    <style name="list_level_item_booked">
+    <style name="ItemsBooked">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">0dp</item>
@@ -25,15 +25,42 @@
         <item name="android:textSize">45sp</item>
     </style>
 
-    <style name="list_level_item_empty">
+    <style name="ItemsEmpty">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/open_sans_light</item>
         <item name="android:textSize">45sp</item>
     </style>
 
-    <style name="list_item_small_label">
+    <style name="SmallLabel">
         <item name="android:fontFamily">@font/open_sans_light</item>
     </style>
+
+    <!-- Buttons -->
+    <style name="ActionButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Car Item -->
+    <style name="CarItemLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <style name="CarItemValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
 
 </resources>

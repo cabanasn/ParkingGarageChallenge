@@ -11,8 +11,6 @@ import javax.inject.Inject
 class SpotsViewModel @Inject constructor(levelsRepository: LevelsRepository) : ViewModel() {
 
     private val _levelId: MutableLiveData<Int> = MutableLiveData()
-    val levelId: LiveData<Int>
-        get() = _levelId
 
     fun setId(id: Int) {
         _levelId.value = id

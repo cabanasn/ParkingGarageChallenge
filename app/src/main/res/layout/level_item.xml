@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/level_name"
-                style="@style/list_item_title"
+                style="@style/BigTitle"
                 android:text="@{level.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/level_booked_spots"
-                style="@style/list_level_item_booked"
+                style="@style/ItemsBooked"
                 android:text="@{level.bookedText}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/level_empty_spots"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/level_empty_spots"
-                style="@style/list_level_item_empty"
+                style="@style/ItemsEmpty"
                 android:text="@{level.emptyText}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                style="@style/list_item_small_label"
+                style="@style/SmallLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/booked_spots"
