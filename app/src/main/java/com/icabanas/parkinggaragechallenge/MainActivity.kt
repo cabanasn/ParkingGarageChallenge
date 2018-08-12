@@ -11,6 +11,7 @@ import com.icabanas.parkinggaragechallenge.ui.spots.SpotsActivity
 import com.icabanas.parkinggaragechallenge.ui.levels.LevelsAdapter
 import com.icabanas.parkinggaragechallenge.vo.Status
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.collapsing_toolbar_with_img.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

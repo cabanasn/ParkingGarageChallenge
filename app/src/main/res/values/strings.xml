@@ -3,4 +3,5 @@
     <string name="network_error">Error fetching parking data</string>
     <string name="spot_number">Spot #%d</string>
     <string name="empty_spot">Empty</string>
+    <string name="booked_spots">BOOKED SPOTS</string>
 </resources>
