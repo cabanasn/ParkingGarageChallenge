@@ -6,10 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.vo.Level
+import kotlinx.android.synthetic.main.activity_spots.*
 import javax.inject.Inject
 
 class SpotsActivity : AppCompatActivity() {
@@ -18,17 +18,26 @@ class SpotsActivity : AppCompatActivity() {
     lateinit var spotsViewModelFactory: SpotsViewModelFactory
     private lateinit var spotsViewModel: SpotsViewModel
 
+    private var spotsAdapter: SpotsAdapter = SpotsAdapter(emptyList()) {
+        //startActivity(newIntent(this, it))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spots)
 
         ParkingApplication.appComponent.inject(this)
 
+        spotsList.adapter = spotsAdapter
+
         spotsViewModel = ViewModelProviders.of(this, spotsViewModelFactory).get(SpotsViewModel::class.java)
         spotsViewModel.level.observe(this, Observer {
             value ->
-            Toast.makeText(this, value?.name ,Toast.LENGTH_SHORT).show()
+            value?.let {
+                spotsAdapter.items = it.spots
+            }
         })
+
         spotsViewModel.setId(intent.getIntExtra(INTENT_LEVEL_ID, 0))
     }
 

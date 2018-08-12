@@ -7,7 +7,7 @@ import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import javax.inject.Inject
 
 
-class SpotsViewModelFactory @Inject constructor(val levelsRepository: LevelsRepository) : ViewModelProvider.Factory {
+class SpotsViewModelFactory @Inject constructor(private val levelsRepository: LevelsRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SpotsViewModel::class.java)) {

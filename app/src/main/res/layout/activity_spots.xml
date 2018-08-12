@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.spots.SpotsActivity">
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/spotsList"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/spot_item" />
+
 </android.support.constraint.ConstraintLayout>
