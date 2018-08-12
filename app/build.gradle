@@ -55,6 +55,9 @@ dependencies {
 
     // UI
     implementation deps.constraint_layout
+    implementation deps.support.recyclerview
+    implementation deps.support.cardview
+    implementation deps.support.design
 
     // Rest API
     implementation deps.retrofit.runtime

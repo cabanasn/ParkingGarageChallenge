@@ -18,16 +18,17 @@ import javax.inject.Singleton
  */
 @Singleton
 class ParkingRepository @Inject constructor(
-        private val parkingService: ParkingService
+        private val parkingService: ParkingService,
+        private val parkingMemoryCache: ParkingMemoryCache
 ) {
     @Inject
     lateinit var context: Context
-    @Inject
-    lateinit var parkingMemoryCache: ParkingMemoryCache
 
-    val parking = MutableLiveData<Resource<Parking>>()
+    val parking = fetchParking()
 
-    fun fetchParking() {
+    fun fetchParking(): MutableLiveData<Resource<Parking>> {
+        val parking = MutableLiveData<Resource<Parking>>()
+
         //Update the Resource status to loading while performing background operations
         parking.value = Resource.loading(null)
 
@@ -53,6 +54,8 @@ class ParkingRepository @Inject constructor(
         } else {
             parking.value = Resource.success(parkingMemoryCache.storedParking)
         }
+
+        return parking
     }
 
 }

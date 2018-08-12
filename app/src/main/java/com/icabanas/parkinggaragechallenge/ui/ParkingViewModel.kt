@@ -11,6 +11,4 @@ class ParkingViewModel @Inject constructor(val parkingRepository: ParkingReposit
 
     var parking: LiveData<Resource<Parking>> = parkingRepository.parking
 
-    fun initNetworkRequest() = parkingRepository.fetchParking()
-
 }
