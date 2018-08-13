@@ -1,8 +1,8 @@
 package com.icabanas.parkinggaragechallenge.repository
 
 import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import com.google.gson.Gson
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.api.ParkingService
 import com.icabanas.parkinggaragechallenge.cache.ParkingMemoryCache
@@ -25,6 +25,9 @@ class ParkingRepository @Inject constructor(
     @Inject
     lateinit var context: Context
 
+    @Inject
+    lateinit var gson: Gson
+
     fun loadParking(): MediatorLiveData<Resource<Parking>> {
         val parking = MediatorLiveData<Resource<Parking>>()
 
@@ -42,12 +45,12 @@ class ParkingRepository @Inject constructor(
                         parkingMemoryCache.storedParking = response.body()!!
                         parking.value = Resource.success(parkingMemoryCache.storedParking)
                     } else {
-                        parking.value = Resource.error(context.getString(R.string.network_error), null)
+                        handleNetworkRequestFailure(parking)
                     }
                 }
 
                 override fun onFailure(call: Call<Parking>?, t: Throwable?) {
-                    parking.value = Resource.error(context.getString(R.string.network_error), null)
+                    handleNetworkRequestFailure(parking)
                 }
             })
         } else {
@@ -55,6 +58,31 @@ class ParkingRepository @Inject constructor(
         }
 
         return parking
+    }
+
+    /**
+     * In case of Network failure, fetch data from offline json
+     */
+    fun handleNetworkRequestFailure(parking: MediatorLiveData<Resource<Parking>>) {
+        val offlineData: Parking? = fetchOfflineData()
+        if (offlineData != null) {
+            parkingMemoryCache.storedParking = offlineData
+            parking.value = Resource.error(context.getString(R.string.offline_data), offlineData)
+        } else {
+            parking.value = Resource.error(context.getString(R.string.network_error), null)
+        }
+    }
+
+    /**
+     * Parse JSON data from file
+     */
+    private fun fetchOfflineData(): Parking? {
+        val fileName = context.getString(R.string.offline_data_file)
+        val jsonString = context.assets.open(fileName).bufferedReader().use {
+            it.readText()
+        }
+        return gson.fromJson(jsonString, Parking::class.java)
+
     }
 
 }

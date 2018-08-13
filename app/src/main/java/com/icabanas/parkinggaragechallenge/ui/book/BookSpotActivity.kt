@@ -12,7 +12,6 @@ import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.databinding.ActivityBookSpotBinding
 import com.icabanas.parkinggaragechallenge.utils.UIUtils
-import com.icabanas.parkinggaragechallenge.vo.Spot
 import com.icabanas.parkinggaragechallenge.vo.Vehicle
 import kotlinx.android.synthetic.main.activity_spot_detail.*
 import kotlinx.android.synthetic.main.base_toolbar.*

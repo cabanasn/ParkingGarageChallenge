@@ -23,6 +23,7 @@ class SpotsActivity : AppCompatActivity() {
 
     private var spotsAdapter: SpotsAdapter = SpotsAdapter(emptyList()) {
         startActivity(SpotDetailActivity.newIntent(this, levelId, it.id))
+        overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

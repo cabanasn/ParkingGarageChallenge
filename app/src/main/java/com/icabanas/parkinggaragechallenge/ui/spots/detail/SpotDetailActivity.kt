@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
-import com.icabanas.parkinggaragechallenge.R.string.spot_number
 import com.icabanas.parkinggaragechallenge.databinding.ActivitySpotDetailBinding
 import com.icabanas.parkinggaragechallenge.ui.book.BookSpotActivity
 import com.icabanas.parkinggaragechallenge.utils.UIUtils
@@ -73,6 +72,7 @@ class SpotDetailActivity : AppCompatActivity() {
 
         bookBtn.setOnClickListener {
             startActivity(BookSpotActivity.newIntent(this, levelId, spotId))
+            overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim)
         }
 
     }

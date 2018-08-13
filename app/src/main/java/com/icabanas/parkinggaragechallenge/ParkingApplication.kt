@@ -4,7 +4,6 @@ import android.app.Application
 import com.icabanas.parkinggaragechallenge.di.AppComponent
 import com.icabanas.parkinggaragechallenge.di.AppModule
 import com.icabanas.parkinggaragechallenge.di.DaggerAppComponent
-import com.icabanas.parkinggaragechallenge.di.NetworkModule
 import timber.log.Timber
 
 class ParkingApplication: Application() {

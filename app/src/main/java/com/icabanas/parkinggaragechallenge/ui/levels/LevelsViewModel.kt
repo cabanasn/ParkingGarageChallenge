@@ -6,7 +6,7 @@ import com.icabanas.parkinggaragechallenge.vo.Parking
 import com.icabanas.parkinggaragechallenge.vo.Resource
 import javax.inject.Inject
 
-class LevelsViewModel @Inject constructor(val parkingRepository: ParkingRepository) : ViewModel() {
+class  LevelsViewModel @Inject constructor(private val parkingRepository: ParkingRepository) : ViewModel() {
 
     private var _shouldRefresh : MutableLiveData<Boolean> = MutableLiveData()
 

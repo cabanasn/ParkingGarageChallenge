@@ -62,6 +62,7 @@ class SearchSpotActivity : AppCompatActivity() {
                     binding.spot?.levelId!!,
                     binding.spot?.id!!,
                     searchEditText.text.toString().toInt()))
+            overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim)
         }
     }
 

@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ui.levels.LevelsViewModel
 import com.icabanas.parkinggaragechallenge.ui.levels.LevelsViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.spots.SpotsActivity
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private var levelsAdapter: LevelsAdapter = LevelsAdapter(emptyList()) {
         startActivity(SpotsActivity.newIntent(this, it.id))
+        overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,19 +41,34 @@ class MainActivity : AppCompatActivity() {
         levelsViewModel = ViewModelProviders.of(this, levelsViewModelFactory).get(LevelsViewModel::class.java)
         levelsViewModel.parking.observe(this, Observer {
             value ->
-                if (value?.status == Status.LOADING) {
-                    progressBar.visibility = View.VISIBLE
-                } else {
-                    progressBar.visibility = View.GONE
-                    value?.let { resource ->
-                        levelsAdapter.items = resource.data?.levels!!
-                        levelsAdapter.notifyDataSetChanged()
+                when (value?.status) {
+                    Status.LOADING -> {
+                        progressBar.visibility = View.VISIBLE
+                    }
+                    Status.SUCCESS -> {
+                        progressBar.visibility = View.GONE
+                        value?.let { resource ->
+                            levelsAdapter.items = resource.data?.levels!!
+                            levelsAdapter.notifyDataSetChanged()
+                        }
+                    }
+                    Status.ERROR -> {
+                        progressBar.visibility = View.GONE
+                        value?.let { resource ->
+                            Toast.makeText(this@MainActivity, resource.message, Toast.LENGTH_SHORT).show()
+                            resource.data.let {
+                                parking ->
+                                levelsAdapter.items = parking?.levels!!
+                                levelsAdapter.notifyDataSetChanged()
+                            }
+                        }
                     }
                 }
         })
 
         searchBtn.setOnClickListener {
             startActivity(SearchSpotActivity.newIntent(this))
+            overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim)
         }
 
     }

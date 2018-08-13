@@ -3,7 +3,6 @@ package com.icabanas.parkinggaragechallenge.repository
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.icabanas.parkinggaragechallenge.cache.ParkingMemoryCache
-import com.icabanas.parkinggaragechallenge.vo.Level
 import com.icabanas.parkinggaragechallenge.vo.Spot
 import com.icabanas.parkinggaragechallenge.vo.Vehicle
 import javax.inject.Inject
