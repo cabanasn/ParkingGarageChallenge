@@ -7,6 +7,16 @@ import com.icabanas.parkinggaragechallenge.R
 
 object UIUtils {
 
+
+    fun showErrorDialog(context: Context,
+                               message: String) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(context.getString(R.string.error_title))
+        builder.setMessage(message)
+        builder.setPositiveButton(context.getString(R.string.ok), null)
+        builder.show()
+    }
+
     fun showConfirmationDialog(context: Context,
                                title:String,
                                message: String,

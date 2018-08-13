@@ -15,13 +15,16 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.spots.SpotsActivity" />
-        <activity android:name=".ui.spots.detail.SpotDetailActivity" />
-        <activity android:name=".ui.book.BookSpotActivity" />
+        <activity
+            android:name=".ui.spots.detail.SpotDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.book.BookSpotActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.spots.search.SearchSpotActivity"></activity>
     </application>
 

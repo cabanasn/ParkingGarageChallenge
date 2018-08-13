@@ -11,6 +11,8 @@ import android.widget.Toast
 import com.icabanas.parkinggaragechallenge.ParkingApplication
 import com.icabanas.parkinggaragechallenge.R
 import com.icabanas.parkinggaragechallenge.databinding.ActivityBookSpotBinding
+import com.icabanas.parkinggaragechallenge.utils.UIUtils
+import com.icabanas.parkinggaragechallenge.vo.Spot
 import com.icabanas.parkinggaragechallenge.vo.Vehicle
 import kotlinx.android.synthetic.main.activity_spot_detail.*
 import kotlinx.android.synthetic.main.base_toolbar.*
@@ -23,13 +25,15 @@ class BookSpotActivity : AppCompatActivity() {
     lateinit var bookSpotViewModelFactory: BookSpotViewModelFactory
     private lateinit  var bookSpotViewModel: BookSpotViewModel
 
+    private lateinit var binding: ActivityBookSpotBinding
+
     private var levelId: Int = 0
     private var spotId: Int = 0
     private var sizeExtra: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityBookSpotBinding>(this, R.layout.activity_book_spot)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_book_spot)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.book_spot_title)
@@ -71,14 +75,37 @@ class BookSpotActivity : AppCompatActivity() {
         bookSpotViewModel.setIds(levelId, spotId)
 
         bookBtn.setOnClickListener {
-            bookSpotViewModel.bookSpot(Vehicle(
-                plate.text.toString(),
-                    brand.text.toString(),
-                    color.text.toString(),
-                    size.text.toString().toInt(),
-                    Date()
-            ))
+           if (isValidForm()) bookSpot()
         }
+    }
+
+    private fun isValidForm(): Boolean {
+        var message = ""
+        if (plate.text.isEmpty())
+            message += "Plate cannot be empty\n"
+        if (brand.text.isEmpty())
+            message += "Brand cannot be empty\n"
+        if (color.text.isEmpty())
+            message += "Color cannot be empty\n"
+        if (size.text.isEmpty()) {
+            message += "Size cannot be empty\n"
+        } else {
+            if (size.text.toString().toInt() > binding.spot?.size!!)
+                message += "Vehicle size is bigger than spot size\n"
+        }
+        if (message.isNotEmpty())
+            UIUtils.showErrorDialog(this, message)
+        return message.isEmpty()
+    }
+
+    private fun bookSpot() {
+        bookSpotViewModel.bookSpot(Vehicle(
+                plate.text.toString(),
+                brand.text.toString(),
+                color.text.toString(),
+                size.text.toString().toInt(),
+                Date()
+        ))
     }
 
     companion object {
