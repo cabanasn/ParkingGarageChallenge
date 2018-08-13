@@ -73,8 +73,7 @@ class SearchSpotActivity : AppCompatActivity() {
 
     companion object {
         fun newIntent(context: Context): Intent {
-            val intent = Intent(context, SearchSpotActivity::class.java)
-            return intent
+            return Intent(context, SearchSpotActivity::class.java)
         }
     }
 }

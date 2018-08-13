@@ -28,10 +28,13 @@ data class Spot (
         @SerializedName("size")
         val size: Int,
         @SerializedName("vehicle")
-        var vehicle: Vehicle?,
+        var vehicle: Vehicle?
+) {
         @Expose(serialize = false)
         var levelId: Int = 0
-)
+        @Expose(serialize = false)
+        var levelName: String = ""
+}
 
 data class Vehicle (
         @SerializedName("plate")

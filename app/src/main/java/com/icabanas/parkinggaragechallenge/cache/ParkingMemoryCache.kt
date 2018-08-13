@@ -79,6 +79,7 @@ class ParkingMemoryCache @Inject constructor(
                 if (freeLevelSpots.isNotEmpty()) {
                     spot = freeLevelSpots.first()
                     spot.levelId = level.id
+                    spot.levelName = level.name
                     break
                 }
             }

@@ -30,6 +30,7 @@ You can try the app by [downloading the .apk directly from here](ParkingApp.apk)
   <img src="img_resources/scr5.png" style="width: 200px"/>
   <img src="img_resources/scr6.png" style="width: 200px"/>
   <img src="img_resources/scr7.png" style="width: 200px"/>
+  <img src="img_resources/scr8.png" style="width: 200px"/>
 </p>
 
 ## Libraries

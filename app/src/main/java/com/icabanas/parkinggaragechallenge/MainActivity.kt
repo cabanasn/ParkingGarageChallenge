@@ -47,17 +47,16 @@ class MainActivity : AppCompatActivity() {
                     }
                     Status.SUCCESS -> {
                         progressBar.visibility = View.GONE
-                        value?.let { resource ->
+                        value.let { resource ->
                             levelsAdapter.items = resource.data?.levels!!
                             levelsAdapter.notifyDataSetChanged()
                         }
                     }
                     Status.ERROR -> {
                         progressBar.visibility = View.GONE
-                        value?.let { resource ->
+                        value.let { resource ->
                             Toast.makeText(this@MainActivity, resource.message, Toast.LENGTH_SHORT).show()
-                            resource.data.let {
-                                parking ->
+                            resource.data.let { parking ->
                                 levelsAdapter.items = parking?.levels!!
                                 levelsAdapter.notifyDataSetChanged()
                             }

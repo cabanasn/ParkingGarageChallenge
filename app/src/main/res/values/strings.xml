@@ -2,6 +2,7 @@
     <string name="app_name">Parking App</string>
     <string name="offline_data_file">offline_data.json</string>
     <string name="spot_number">Spot #%d</string>
+    <string name="located_on">Located on %s</string>
     <string name="string_number">%d</string>
     <string name="available_spot">AVAILABLE</string>
     <string name="booked_spot">BOOKED</string>
@@ -18,7 +19,7 @@
     <string name="spot_booked_successfully">Spot booked successfully</string>
     <string name="book_spot_title">Book Spot</string>
     <string name="spot_book_spot_data">Spot: Spot #%d - Size: %d</string>
-    <string name="vehicle_search_label">Enter the vehicle size</string>
+    <string name="vehicle_search_label">Please enter the vehicle size</string>
     <string name="search_title">Find a Spot</string>
     <string name="error_title">Error</string>
     <string name="network_error">Error fetching parking data</string>
@@ -26,4 +27,5 @@
     <string name="error_releasing_spot">Error releasing spot</string>
     <string name="error_booking_spot">Error booking spot</string>
     <string name="big_enough_spot_error">There are no spots available that can fit that vehicle.</string>
+    <string name="find_parking">Find the first parking spot where your vehicle can park:</string>
 </resources>
