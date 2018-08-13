@@ -1,5 +1,6 @@
 package com.icabanas.parkinggaragechallenge.vo
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -27,7 +28,9 @@ data class Spot (
         @SerializedName("size")
         val size: Int,
         @SerializedName("vehicle")
-        var vehicle: Vehicle?
+        var vehicle: Vehicle?,
+        @Expose(serialize = false)
+        var levelId: Int = 0
 )
 
 data class Vehicle (

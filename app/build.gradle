@@ -36,6 +36,7 @@ android {
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.support.app_compat
+    implementation deps.constraint_layout
 
     // Logging
     implementation deps.timber
@@ -54,7 +55,6 @@ dependencies {
     kapt deps.dagger.compiler
 
     // UI
-    implementation deps.constraint_layout
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.design

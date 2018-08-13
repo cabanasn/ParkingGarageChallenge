@@ -7,7 +7,7 @@ class LevelBindItem(val level: Level) {
     var bookedText: String = "${bookedSpots()}"
     var emptyText: String = "/${level.spots.size}"
     var bookedWeight: Float = bookedSpots().toFloat()
-    var emptyWeight: Float = level.spots.size.toFloat()
+    var emptyWeight: Float = level.spots.size.toFloat() - bookedSpots().toFloat()
 
     fun bookedSpots(): Int = level.spots.filter { it.vehicle != null }.size
 }

@@ -70,13 +70,17 @@ class ParkingMemoryCache @Inject constructor(
      */
     fun findFreeParkingSpot(size: Int): Spot? {
         var spot: Spot? = null
-        //Iterate levels from lowest to highest
-        for (level in storedParking.levels.sortedBy { it.id }) {
-            //Filter taken and too small spots, then find best size fit
-            val freeLevelSpots = level.spots.filter { spotIt -> spotIt.vehicle == null && spotIt.size >= size }.sortedBy { spotIt -> spotIt.size }
-            if (freeLevelSpots.isNotEmpty()) {
-                spot = freeLevelSpots.first()
-                break
+        //Check size value
+        if (size > 0) {
+            //Iterate levels from lowest to highest
+            for (level in storedParking.levels.sortedBy { it.id }) {
+                //Filter taken and too small spots, then find best size fit
+                val freeLevelSpots = level.spots.filter { spotIt -> spotIt.vehicle == null && spotIt.size >= size }.sortedBy { spotIt -> spotIt.size }
+                if (freeLevelSpots.isNotEmpty()) {
+                    spot = freeLevelSpots.first()
+                    spot.levelId = level.id
+                    break
+                }
             }
         }
         return spot

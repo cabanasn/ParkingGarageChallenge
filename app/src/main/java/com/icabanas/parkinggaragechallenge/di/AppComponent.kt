@@ -4,6 +4,7 @@ import com.icabanas.parkinggaragechallenge.MainActivity
 import com.icabanas.parkinggaragechallenge.ui.book.BookSpotActivity
 import com.icabanas.parkinggaragechallenge.ui.spots.SpotsActivity
 import com.icabanas.parkinggaragechallenge.ui.spots.detail.SpotDetailActivity
+import com.icabanas.parkinggaragechallenge.ui.spots.search.SearchSpotActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,4 +15,5 @@ interface AppComponent {
     fun inject(spotsActivity: SpotsActivity)
     fun inject(spotDetailActivity: SpotDetailActivity)
     fun inject(bookSpotActivity: BookSpotActivity)
+    fun inject(searchSpotActivity: SearchSpotActivity)
 }

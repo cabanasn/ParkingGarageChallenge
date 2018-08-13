@@ -6,9 +6,10 @@
 
     <!-- Binding Data Definition -->
     <data>
+
         <variable
             name="spot"
-            type="com.icabanas.parkinggaragechallenge.vo.Spot"/>
+            type="com.icabanas.parkinggaragechallenge.vo.Spot" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -19,67 +20,67 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:layout_marginTop="?attr/actionBarSize"
-            android:padding="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/spotLabel"
-                tools:text="Spot: Spot #1 - Size: 30"
-                android:text="@{String.format(@string/spot_book_spot_data, spot.id, spot.size)}"
+                style="@style/CarItemLabel"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
+                android:text="@{String.format(@string/spot_book_spot_data, spot.id, spot.size)}"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                style="@style/CarItemLabel" />
+                tools:text="Spot: Spot #1 - Size: 30" />
 
             <TextView
                 android:id="@+id/vehicleLabel"
-                android:text="Vehicle"
+                style="@style/CarItemLabel"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
+                android:text="Vehicle"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spotLabel"
-                style="@style/CarItemLabel" />
+                app:layout_constraintTop_toBottomOf="@id/spotLabel" />
 
 
             <TextView
                 android:id="@+id/brandLabel"
-                android:text="Brand:"
+                style="@style/CarItemLabel"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
+                android:text="Brand:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicleLabel"
-                style="@style/CarItemLabel" />
+                app:layout_constraintTop_toBottomOf="@id/vehicleLabel" />
 
             <TextView
                 android:id="@+id/plateLabel"
                 style="@style/CarItemLabel"
-                android:text="Plate:"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
+                android:text="Plate:"
                 app:layout_constraintStart_toStartOf="@+id/brandLabel"
                 app:layout_constraintTop_toBottomOf="@+id/brand" />
 
             <TextView
                 android:id="@+id/colorLabel"
                 style="@style/CarItemLabel"
-                android:text="Color:"
                 android:layout_height="@dimen/form_label_height"
                 android:gravity="center"
+                android:text="Color:"
                 app:layout_constraintStart_toStartOf="@+id/plateLabel"
                 app:layout_constraintTop_toBottomOf="@+id/plate" />
 
             <TextView
                 android:id="@+id/sizeLabel"
                 style="@style/CarItemLabel"
-                android:layout_marginBottom="8dp"
-                android:text="Size:"
                 android:layout_height="@dimen/form_label_height"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
+                android:text="Size:"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/colorLabel"
                 app:layout_constraintTop_toBottomOf="@+id/color"
@@ -89,25 +90,25 @@
                 android:id="@+id/brand"
                 style="@style/CarItemValue"
                 android:layout_width="0dp"
-                app:layout_constraintHorizontal_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/brandLabel"
                 app:layout_constraintTop_toTopOf="@+id/brandLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:inputType="text"
                 tools:text="Nissan" />
 
             <EditText
                 android:id="@+id/plate"
                 style="@style/CarItemValue"
                 android:layout_width="0dp"
-                app:layout_constraintHorizontal_weight="1"
                 android:layout_gravity="center"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="@+id/brand"
                 app:layout_constraintTop_toTopOf="@+id/plateLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:inputType="text"
                 tools:text="SBP 3333" />
 
 
@@ -115,12 +116,12 @@
                 android:id="@+id/color"
                 style="@style/CarItemValue"
                 android:layout_width="0dp"
-                app:layout_constraintHorizontal_weight="1"
                 android:layout_gravity="center"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="@+id/plate"
                 app:layout_constraintTop_toTopOf="@+id/colorLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:inputType="text"
                 tools:text="Blue" />
 
 
@@ -128,12 +129,12 @@
                 android:id="@+id/size"
                 style="@style/CarItemValue"
                 android:layout_width="0dp"
-                app:layout_constraintHorizontal_weight="1"
                 android:layout_gravity="center"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="@+id/color"
                 app:layout_constraintTop_toTopOf="@+id/sizeLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:inputType="number"
                 tools:text="30" />
 
             <Button

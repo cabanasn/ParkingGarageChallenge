@@ -33,4 +33,10 @@ class SpotsRepository @Inject constructor(
         return parkingMemoryCache.releaseSpot(levelId, spotId)
     }
 
+    fun findFreeParkingSpot(size: Int) : LiveData<Spot> {
+        val spot = MutableLiveData<Spot>()
+        spot.value = parkingMemoryCache.findFreeParkingSpot(size)
+        return spot
+    }
+
 }

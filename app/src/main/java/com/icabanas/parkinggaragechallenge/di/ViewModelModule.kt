@@ -3,9 +3,10 @@ package com.icabanas.parkinggaragechallenge.di
 import com.icabanas.parkinggaragechallenge.repository.LevelsRepository
 import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import com.icabanas.parkinggaragechallenge.repository.SpotsRepository
-import com.icabanas.parkinggaragechallenge.ui.ParkingViewModelFactory
+import com.icabanas.parkinggaragechallenge.ui.levels.LevelsViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.book.BookSpotViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.spots.SpotsViewModelFactory
+import com.icabanas.parkinggaragechallenge.ui.spots.detail.SearchSpotViewModelFactory
 import com.icabanas.parkinggaragechallenge.ui.spots.detail.SpotDetailViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -17,8 +18,8 @@ class ViewModelModule {
 
     @Provides
     @Singleton
-    fun providesViewModelFactory(parkingRepository: ParkingRepository): ParkingViewModelFactory {
-        return ParkingViewModelFactory(parkingRepository)
+    fun providesViewModelFactory(parkingRepository: ParkingRepository): LevelsViewModelFactory {
+        return LevelsViewModelFactory(parkingRepository)
     }
 
     @Provides
@@ -39,6 +40,11 @@ class ViewModelModule {
         return BookSpotViewModelFactory(spotsRepository)
     }
 
+    @Provides
+    @Singleton
+    fun providesSearchSpotViewModelFactory(spotsRepository: SpotsRepository): SearchSpotViewModelFactory {
+        return SearchSpotViewModelFactory(spotsRepository)
+    }
 
 }
 

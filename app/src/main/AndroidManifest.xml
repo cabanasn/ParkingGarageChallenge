@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".ui.spots.SpotsActivity" />
         <activity android:name=".ui.spots.detail.SpotDetailActivity" />
-        <activity android:name=".ui.book.BookSpotActivity"></activity>
+        <activity android:name=".ui.book.BookSpotActivity" />
+        <activity android:name=".ui.spots.search.SearchSpotActivity"></activity>
     </application>
 
 </manifest>

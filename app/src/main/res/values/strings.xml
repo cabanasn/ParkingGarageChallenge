@@ -20,4 +20,7 @@
     <string name="spot_booked_successfully">Spot booked successfully</string>
     <string name="book_spot_title">Book Spot</string>
     <string name="spot_book_spot_data">Spot: Spot #%d - Size: %d</string>
+    <string name="vehicle_search_label">Enter the vehicle size</string>
+    <string name="big_enough_spot_error">There are no spots available that can fit that vehicle.</string>
+    <string name="search_title">Find a Spot</string>
 </resources>

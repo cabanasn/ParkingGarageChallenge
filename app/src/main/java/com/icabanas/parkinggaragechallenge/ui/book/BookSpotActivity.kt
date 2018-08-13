@@ -25,6 +25,7 @@ class BookSpotActivity : AppCompatActivity() {
 
     private var levelId: Int = 0
     private var spotId: Int = 0
+    private var sizeExtra: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,13 @@ class BookSpotActivity : AppCompatActivity() {
         //Get Level Id and Spot Id from Intent Parameter
         levelId = intent.getIntExtra(INTENT_LEVEL_ID, 0)
         spotId = intent.getIntExtra(INTENT_SPOT_ID, 0)
-
+        sizeExtra = intent.getIntExtra(INTENT_SIZE, 0)
+        if (sizeExtra > 0) {
+            size.text = "$sizeExtra"
+            size.isEnabled = false
+        } else {
+            size.isEnabled = true
+        }
 
         // Initialize ViewModel and Listen to changes
         bookSpotViewModel = ViewModelProviders.of(this, bookSpotViewModelFactory).get(BookSpotViewModel::class.java)
@@ -77,11 +84,15 @@ class BookSpotActivity : AppCompatActivity() {
     companion object {
         private val INTENT_SPOT_ID = "spot_id"
         private val INTENT_LEVEL_ID = "level_id"
+        private val INTENT_SIZE = "size"
 
-        fun newIntent(context: Context, levelId: Int, spotId: Int): Intent {
+        fun newIntent(context: Context, levelId: Int, spotId: Int, size: Int = 0): Intent {
             val intent = Intent(context, BookSpotActivity::class.java)
             intent.putExtra(INTENT_LEVEL_ID, levelId)
             intent.putExtra(INTENT_SPOT_ID, spotId)
+            if (size > 0) {
+                intent.putExtra(INTENT_SIZE, size)
+            }
             return intent
         }
     }

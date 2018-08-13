@@ -1,5 +1,6 @@
 package com.icabanas.parkinggaragechallenge.repository
 
+import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import com.icabanas.parkinggaragechallenge.R
@@ -24,8 +25,8 @@ class ParkingRepository @Inject constructor(
     @Inject
     lateinit var context: Context
 
-    fun loadParking(): MutableLiveData<Resource<Parking>> {
-        val parking = MutableLiveData<Resource<Parking>>()
+    fun loadParking(): MediatorLiveData<Resource<Parking>> {
+        val parking = MediatorLiveData<Resource<Parking>>()
 
         //Update the Resource status to loading while performing background operations
         parking.value = Resource.loading(null)

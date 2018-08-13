@@ -1,4 +1,4 @@
-package com.icabanas.parkinggaragechallenge.ui
+package com.icabanas.parkinggaragechallenge.ui.levels
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -6,11 +6,11 @@ import com.icabanas.parkinggaragechallenge.repository.ParkingRepository
 import javax.inject.Inject
 
 
-class ParkingViewModelFactory @Inject constructor(private val parkingRepository: ParkingRepository) : ViewModelProvider.Factory {
+class LevelsViewModelFactory @Inject constructor(private val parkingRepository: ParkingRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ParkingViewModel::class.java)) {
-            return ParkingViewModel(parkingRepository) as T
+        if (modelClass.isAssignableFrom(LevelsViewModel::class.java)) {
+            return LevelsViewModel(parkingRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
